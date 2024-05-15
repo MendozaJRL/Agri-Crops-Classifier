@@ -20,7 +20,7 @@ def import_and_predict(image_data,model):
     size=(100,100)
     image=ImageOps.fit(image_data, size)
     img=np.asarray(image)
-    img_reshape = img.reshape(1, width, length, 1)
+    img_reshape = img.reshape(1, 100, 100, 1)
     prediction=model.predict(img_reshape)
     return prediction
 
