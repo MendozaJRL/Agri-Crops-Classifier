@@ -20,6 +20,8 @@ from PIL import Image,ImageOps
 
 # Array that corresponds to the labels
 Classification = ['Jute', 'Maize', 'Rice', 'Sugarcane', 'Wheat']
+width = 64
+length = 64
 
 # load and prepare the image
 def Prediction(filepath):
