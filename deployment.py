@@ -1,36 +1,43 @@
 # Contents of AgriDeployment.py
 
+# Import Necessary Files
 import streamlit as st
 import tensorflow as tf
-
-@st.cache_resource
-def load_model():
-  model = tf.keras.models.load_model('filename1.h5')
-  return model
-
-model = load_model()
-st.write("""# Agricultural Crops Classifier""")
-file = st.file_uploader("Choose crop photo from computer",type = ["jpg","png"])
 
 import cv2
 from PIL import Image,ImageOps
 from keras.preprocessing.image import load_img, img_to_array
 import numpy as np
 
-def import_and_predict(image_data,model):
-    size=(100,100)
-    image=ImageOps.fit(image_data, size)
-    img = img_to_array(img)
-    img_reshape = img.reshape(1, 100, 100, 1)
-    prediction=model.predict(img_reshape)
+@st.cache_resource
+
+# Functions
+def load_model():
+  model = tf.keras.models.load_model('filename1.h5')
+  return model
+
+def import_and_predict(image_data, model):
+    img = image_data.resize((100,100))
+    img_array = np.array(img)
+    img_array = img_array / 255.0
+    img_array = np.expand_dims(img_array, axis=0)
+  
+    prediction = model.predict(img_array)
     return prediction
+  
+# Main
+model = load_model()
+
+st.write("""# Agricultural Crops Classifier""")
+file = st.file_uploader("Choose crop photo from computer",type = ["jpg", "jpeg", "png"])
 
 if file is None:
     st.text("Please upload an image file")
 else:
     image = Image.open(file)
-    st.image(image,use_column_width=True)
-    prediction = import_and_predict(image,model)
+    st.image(image, use_column_width=True)
+    
+    prediction = import_and_predict(image, model)
 
     class_names = ['Jute (Saluyot)', 'Maize (Mais)', 'Rice (Bigas)', 'Sugarcane (Tubo)', 'Wheat (Trigo)']
 
