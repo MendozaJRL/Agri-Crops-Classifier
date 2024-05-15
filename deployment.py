@@ -16,12 +16,12 @@ import cv2
 from PIL import Image,ImageOps
 import numpy as np
 
-def import_and_predict(image_data,model):
-    width = 100
-    length = 100
-    size = (width, height)
+width = 100
+length = 100
+size = (width, length)
 
-    image = ImageOps.fit(image_data,size, Image.Resampling.LANCZOS)
+def import_and_predict(image_data,model):
+    image = ImageOps.fit(image_data, size, Image.Resampling.LANCZOS)
     img = np.asarray(image)
 
     img_reshape = img.reshape(1, width, length, 1)
