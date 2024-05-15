@@ -20,6 +20,8 @@ from keras.preprocessing.image import load_img, img_to_array
 from keras.models import load_model
 
 Classification = ['Jute (Saluyot)', 'Maize (Mais)', 'Rice (Bigas)', 'Sugarcane (Tubo)', 'Wheat (Trigo)']
+width = 100
+height = 100
 
 # load and prepare the image
 def Prediction(filepath):
