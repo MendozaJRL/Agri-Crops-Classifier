@@ -7,8 +7,6 @@ from PIL import Image
 import numpy as np
 
 @st.cache_resource
-class_names = ['Jute (Saluyot)', 'Maize (Mais)', 'Rice (Bigas)', 'Sugarcane (Tubo)', 'Wheat (Trigo)']
-
 def load_model():
   model = tf.keras.models.load_model('Model79.4.h5')
   return model
@@ -25,6 +23,7 @@ def prepare_image(image_data):
 
 def prediction(model, img_array):
   predictions = model.predict(img_array)
+  class_names = ['Jute (Saluyot)', 'Maize (Mais)', 'Rice (Bigas)', 'Sugarcane (Tubo)', 'Wheat (Trigo)']
   predicted_class_digit = np.argmax(predictions[0])
   predicted_class = class_names[predicted_class_digit]
   confidence_scores = predictions[0] * 100
