@@ -16,8 +16,8 @@ import cv2
 from PIL import Image,ImageOps
 import numpy as np
 
-width = 100
-length = 100
+width = 64
+length = 64
 size = (width, length)
 
 def import_and_predict(image_data,model):
