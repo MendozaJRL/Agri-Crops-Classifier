@@ -4,50 +4,35 @@ import streamlit as st
 import tensorflow as tf
 
 @st.cache_resource
-# Load the Model
 def load_model():
-  model = tf.keras.models.load_model('Model83.h5')
+  model = tf.keras.models.load_model('Model79.4.h5')
   return model
-myModel = load_model()
 
+model = load_model()
 st.write("""# Agricultural Crops Classifier""")
 file = st.file_uploader("Choose crop photo from computer",type = ["jpg","png"])
 
-from numpy import argmax
-from keras.preprocessing.image import load_img, img_to_array
-from keras.models import load_model
+import cv2
 from PIL import Image,ImageOps
+import numpy as np
 
-# Array that corresponds to the labels
-Classification = ['Jute', 'Maize', 'Rice', 'Sugarcane', 'Wheat']
-width = 64
-length = 64
-
-# load and prepare the image
-def Prediction(filepath):
-    # Convert to array
-    img = img_to_array(filepath)
-
-    # Reshape into a single sample with 1 channel
-    img = img.reshape(width, length, 1)
-
-    # Prepare pixel data
-    img = img.astype('float32')
-    img = img / 255.0
-
-    # Obtains a value or digit which will be the index for classification
-    predict_value = myModel.predict(img)
-    digit = argmax(predict_value)
-
-    # Identify using the obtained digit
-    return Classification[digit]
+def import_and_predict(image_data,model):
+    size=(64,64)
+    image=ImageOps.fit(image_data, size)
+    img=np.asarray(image)
+  
+    img_reshape=img[np.newaxis,...]
+    prediction=model.predict(img_reshape)
+    return prediction
 
 if file is None:
     st.text("Please upload an image file")
 else:
-    test_image_path = Image.open(file)
-    st.image(test_image_path,use_column_width=True)
-    prediction = Prediction(test_image_path)
+    image = Image.open(file)
+    st.image(image,use_column_width=True)
+    prediction = import_and_predict(image,model)
 
-    string="OUTPUT : " + prediction
+    class_names = ['Jute (Saluyot)', 'Maize (Mais)', 'Rice (Bigas)', 'Sugarcane (Tubo)', 'Wheat (Trigo)']
+
+    string="OUTPUT : " + class_names[np.argmax(prediction)]
     st.success(string)
