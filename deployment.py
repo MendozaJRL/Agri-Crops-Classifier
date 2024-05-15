@@ -24,7 +24,7 @@ def Prediction(filepath):
 
 # Main
 st.write("""# Agricultural Crops Classifier""")
-file = st.file_uploader("Choose crop photo from computer",type = ["jpg","png"])
+file = st.file_uploader("Choose crop photo from computer")
 
 import cv2
 from PIL import Image,ImageOps
