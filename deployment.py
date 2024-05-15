@@ -14,12 +14,13 @@ file = st.file_uploader("Choose crop photo from computer",type = ["jpg","png"])
 
 import cv2
 from PIL import Image,ImageOps
+from keras.preprocessing.image import load_img, img_to_array
 import numpy as np
 
 def import_and_predict(image_data,model):
     size=(100,100)
     image=ImageOps.fit(image_data, size)
-    img=np.asarray(image)
+    img = img_to_array(img)
     img_reshape = img.reshape(1, 100, 100, 1)
     prediction=model.predict(img_reshape)
     return prediction
