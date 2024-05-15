@@ -10,7 +10,7 @@ from tensorflow.keras.models import model_from_json
 
 @st.cache_resource
 def Prediction(_filepath):   
-    img = load_img(filepath, color_mode="grayscale", target_size=(width, length))
+    img = load_img(_filepath, color_mode="grayscale", target_size=(width, length))
   
     img = img_to_array(img)
     img = img.reshape(1, width, length, 1)
@@ -24,7 +24,7 @@ def Prediction(_filepath):
 
 # Main
 st.write("""# Agricultural Crops Classifier""")
-file = st.file_uploader("Choose crop photo from computer")
+file = st.file_uploader("Choose crop photo from computer", type = ["jpg", "png"])
 
 import cv2
 from PIL import Image,ImageOps
