@@ -5,7 +5,10 @@ import tensorflow as tf
 
 @st.cache_resource
 # Load the Model
-myModel = load_model('filename1.h5')
+def get_model():
+  model = load_model('Model79.4.h5')
+  return model
+myModel = get_model()
 
 st.write("""# Agricultural Crops Classifier""")
 file = st.file_uploader("Choose crop photo from computer",type = ["jpg","png"])
