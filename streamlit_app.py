@@ -48,7 +48,7 @@ def main():
       st.error("Invalid input: Image does not contain a recognizable agricultural crop.")
     elif all(score < confidence_threshold for score in confidence_scores):
       st.error("Invalid input: Image does not contain a confidently recognizable agricultural crop.")
-    else
+    else:
       results, confidence_scores = prediction(model, img_array)
       st.success(f"The predicted crop is: {results}")
 
