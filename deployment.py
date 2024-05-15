@@ -49,5 +49,5 @@ else:
     st.image(image,use_column_width=True)
     prediction = Prediction(image)
 
-    string="OUTPUT : " + prediction]
+    string="OUTPUT : " + prediction
     st.success(string)
