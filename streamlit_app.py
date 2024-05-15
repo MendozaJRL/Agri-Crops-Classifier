@@ -49,6 +49,9 @@ def main():
     for i, crop_name in enumerate(class_names):
       st.write(f"{crop_name}: {confidence_scores[i]:.2f}%")
 
+    if all(score < confidence_threshold for score in confidence_scores):
+      st.error("Invalid input: Image does not contain an agricultural crop.")
+
 if __name__ == "__main__":
   main()
   
