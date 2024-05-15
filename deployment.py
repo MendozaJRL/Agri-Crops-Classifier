@@ -20,8 +20,10 @@ def import_and_predict(image_data,model):
     width = 100
     height = 100
     size = (width, height)
+
     image = ImageOps.fit(image_data,size, Image.ANTIALIAS)
     img = np.asarray(image)
+
     img_reshape = img[np.newaxis, ...]
     prediction = model.predict(img_reshape)
     return prediction
@@ -33,7 +35,7 @@ else:
     st.image(image,use_column_width=True)
     prediction = import_and_predict(image,model)
 
-    class_names = ['Jute', 'Maize', 'Rice', 'Sugarcane', 'Wheat']
+    class_names = ['Jute (Saluyot)', 'Maize (Mais)', 'Rice (Bigas)', 'Sugarcane (Tubo)', 'Wheat (Trigo)']
 
     string="OUTPUT : " + class_names[np.argmax(prediction)]
     st.success(string)
