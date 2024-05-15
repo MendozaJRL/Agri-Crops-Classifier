@@ -21,7 +21,7 @@ def import_and_predict(image_data,model):
     height = 100
     size = (width, height)
 
-    image = ImageOps.fit(image_data,size, Image.ANTIALIAS)
+    image = ImageOps.fit(image_data,size, Image.Resampling.LANCZOS)
     img = np.asarray(image)
 
     img_reshape = img[np.newaxis, ...]
