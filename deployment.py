@@ -19,6 +19,8 @@ def load_model():
 def import_and_predict(image_data, model):
     img = image_data.resize((100,100))
     img_array = np.array(img)
+    if img_array.shape[-1] == 4:
+        img_array = img_array[..., :3]
     img_array = img_array / 255.0
     img_array = np.expand_dims(img_array, axis=0)
   
