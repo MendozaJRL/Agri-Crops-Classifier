@@ -16,7 +16,7 @@ def prepare_image(image_data):
   img_array = np.array(img)
   #if img_array.shape[-1] == 4:
   #  img_array = img_array[..., :3]
-  img_array = img_array.reshape(1, width, length, 1)
+  img_array = img_array.reshape(1, 100, 100, 1)
   img_array = img_array.astype('float32')
   img_array = img_array / 255.0
   img_array = np.expand_dims(img_array, axis=0)
