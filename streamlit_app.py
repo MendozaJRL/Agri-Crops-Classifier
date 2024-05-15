@@ -26,7 +26,8 @@ def prediction(model, img_array):
   class_names = ['Jute (Saluyot)', 'Maize (Mais)', 'Rice (Bigas)', 'Sugarcane (Tubo)', 'Wheat (Trigo)']
   predicted_class_digit = np.argmax(predictions[0])
   predicted_class = class_names[predicted_class_digit]
-  return predicted_class
+  confidence_scores = predictions[0] * 100
+  return predicted_class, confidence_scores
 
 def main():
   model = load_model()
@@ -42,6 +43,10 @@ def main():
     
     result = prediction(model, img_array)
     st.success(f"The predicted crop is: {result}")
+
+    st.write("Confidence scores for each class:")
+    for i, class_name in enumerate(class_names):
+      st.write(f"{class_name}: {confidence_scores[i]:.2f}%")
 
 if __name__ == "__main__":
   main()
