@@ -32,6 +32,7 @@ def prediction(model, img_array):
 def main():
   model = load_model()
   class_names = ['Jute (Saluyot)', 'Maize (Mais)', 'Rice (Bigas)', 'Sugarcane (Tubo)', 'Wheat (Trigo)']
+  confidence_threshold = 50
   
   st.title("Agricultural Crops Classifier")
   st.write("Please Upload a Crop Image")
