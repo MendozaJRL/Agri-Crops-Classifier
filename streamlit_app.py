@@ -23,7 +23,6 @@ def prepare_image(image_data):
 
 def prediction(model, img_array):
     predictions = model.predict(img_array)
-    class_names = ['Jute (Saluyot)', 'Maize (Mais)', 'Rice (Bigas)', 'Sugarcane (Tubo)', 'Wheat (Trigo)']
     predicted_class_digit = np.argmax(predictions[0])
     predicted_class = class_names[predicted_class_digit]
     confidence_scores = predictions[0] * 100
@@ -31,7 +30,8 @@ def prediction(model, img_array):
 
 def main():
     model = load_model()
-
+    class_names = ['Jute (Saluyot)', 'Maize (Mais)', 'Rice (Bigas)', 'Sugarcane (Tubo)', 'Wheat (Trigo)']
+  
     st.title("Agricultural Crops Classifier")
     st.write("Please Upload a Crop Image")
     file = st.file_uploader("Select Image ", type=["jpg", "jpeg", "png"])
