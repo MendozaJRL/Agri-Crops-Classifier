@@ -33,7 +33,7 @@ def main():
   model = load_model()
   class_names = ['Jute (Saluyot)', 'Maize (Mais)', 'Rice (Bigas)', 'Sugarcane (Tubo)', 'Wheat (Trigo)']
   confidence_threshold = 50
-  max_confidence_threshold = 70
+  confidence_difference_threshold = 20
   
   st.title("Agricultural Crops Classifier")
   st.write("Please Upload a Crop Image")
@@ -45,10 +45,13 @@ def main():
     img_array = prepare_image(image)
 
     results, confidence_scores = prediction(model, img_array)
-    
-    if results == "Unknown" or max(confidence_scores) < max_confidence_threshold:
-      st.error("Invalid input: Image does not contain a recognizable agricultural crop.")
-    elif all(score < confidence_threshold for score in confidence_scores):
+
+    # Check if the difference between max confidence and second-highest confidence is below threshold
+    max_confidence_index = np.argmax(confidence_scores)
+    second_max_confidence = sorted(confidence_scores)[-2]
+    if confidence_scores[max_confidence_index] - second_max_confidence < confidence_difference_threshold:
+      st.error("Invalid input: Image does not contain a confidently recognizable agricultural crop.")
+    elif confidence_scores[max_confidence_index] < confidence_threshold:
       st.error("Invalid input: Image does not contain a confidently recognizable agricultural crop.")
     else:
       st.success(f"The predicted crop is: {results}")
