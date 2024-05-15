@@ -26,7 +26,7 @@ length = 64
 # load and prepare the image
 def Prediction(filepath):
     # Load and prepare the image
-    img = load_img(filepath, grayscale=True, target_size=(width, length))
+    img = filepath
 
     # Convert to array
     img = img_to_array(img)
