@@ -41,8 +41,8 @@ def main():
     st.image(image, caption="Uploaded Image", use_column_width=True)
     img_array = prepare_image(image)
     
-    result = prediction(model, img_array)
-    st.success(f"The predicted crop is: {result}")
+    predicted_class, confidence_scores = prediction(model, img_array)
+    st.success(f"The predicted crop is: {predicted_class}")
 
     st.write("Confidence scores for each class:")
     for i, class_name in enumerate(class_names):
