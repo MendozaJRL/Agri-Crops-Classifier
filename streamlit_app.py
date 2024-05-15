@@ -32,8 +32,8 @@ def main():
   model = load_model()
 
   st.title("Agricultural Crops Classifier")
-  st.write("Please Upload a Crop Image")
-  file = st.file_uploader("Select Image ", type=["jpg", "jpeg", "png"])
+  st.write("This Deep Learning Model will classify the input crop image whether it is one of the following: Jute(Saluyot), Maize(Mais), Rice(Bigas), Sugarcane(Tubo), or Wheat(Trigo).")
+  file = st.file_uploader("Select a Crop Image ", type=["jpg", "jpeg", "png"])
 
   if file is not None:
     image = Image.open(file)
