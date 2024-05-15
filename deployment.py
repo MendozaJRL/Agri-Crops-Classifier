@@ -18,7 +18,7 @@ import numpy as np
 
 def import_and_predict(image_data,model):
     width = 100
-    height = 100
+    length = 100
     size = (width, height)
 
     image = ImageOps.fit(image_data,size, Image.Resampling.LANCZOS)
