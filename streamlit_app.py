@@ -51,6 +51,8 @@ def main():
     second_max_confidence = sorted(confidence_scores)[-2]
     if confidence_scores[max_confidence_index] - second_max_confidence < confidence_difference_threshold:
       st.error("Invalid input: Image does not contain a confidently recognizable agricultural crop.")
+    elif confidence_scores[max_confidence_index] - second_max_confidence == 100:
+      st.error("Invalid input: Image does not contain a confidently recognizable agricultural crop.")
     elif confidence_scores[max_confidence_index] < confidence_threshold:
       st.error("Invalid input: Image does not contain a confidently recognizable agricultural crop.")
     else:
