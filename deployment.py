@@ -43,9 +43,6 @@ def Prediction(filepath):
     # Identify using the obtained digit
     return Classification[digit]
 
-import cv2
-from google.colab.patches import cv2_imshow
-
 if file is None:
     st.text("Please upload an image file")
 else:
