@@ -14,21 +14,11 @@ def load_model():
 def prepare_image(image_data):
   img = image_data.resize((100,100))
   img_array = np.array(img)
-
-  # Ensure the image is grayscale
   if len(img_array.shape) > 2:
     img_array = np.mean(img_array, axis=2)
-    
-  img_array = img_array.reshape(1, 100, 100, 1)  # Reshape to match model input shape
-  img_array = img_array.astype('float32')  # Convert to float32
-  img_array = img_array / 255.0  # Normalize pixel values
-  
-  #if img_array.shape[-1] == 4:
-  #  img_array = img_array[..., :3]
-  #img_array = img_array.reshape(1, 100, 100, 1)
-  #img_array = img_array.astype('float32')
-  #img_array = img_array / 255.0
-  #img_array = np.expand_dims(img_array, axis=0)
+  img_array = img_array.reshape(1, 100, 100, 1)
+  img_array = img_array.astype('float32')
+  img_array = img_array / 255.0
   return img_array
 
 def prediction(model, img_array):
