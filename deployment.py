@@ -50,6 +50,6 @@ def main():
     prediction_class = display_prediction(predictions)
     st.success("The predicted crop is: {predicted_class}")
 
-if __name__ = "__main__"
+if __name__ == "__main__"
   main()
   
