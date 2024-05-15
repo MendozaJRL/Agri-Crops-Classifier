@@ -25,14 +25,11 @@ length = 64
 
 # load and prepare the image
 def Prediction(filepath):
-    # Load and prepare the image
-    img = filepath
-
     # Convert to array
-    img = img_to_array(img)
+    img = img_to_array(filepath)
 
     # Reshape into a single sample with 1 channel
-    img = img.reshape(1, width, length, 1)
+    img = img.reshape(width, length, 1)
 
     # Prepare pixel data
     img = img.astype('float32')
