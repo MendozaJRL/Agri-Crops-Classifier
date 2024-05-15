@@ -9,9 +9,6 @@ from keras.models import load_model
 from tensorflow.keras.models import model_from_json
 
 @st.cache_resource
-
-model = load_model("Model79.4.h5")
-
 st.write("""# Agricultural Crops Classifier""")
 file = st.file_uploader("Choose crop photo from computer",type = ["jpg","png"])
 
@@ -19,6 +16,7 @@ import cv2
 from PIL import Image,ImageOps
 import numpy as np
 
+model = load_model("Model79.4.h5")
 class_names = ['Jute (Saluyot)', 'Maize (Mais)', 'Rice (Bigas)', 'Sugarcane (Tubo)', 'Wheat (Trigo)']
 width = 100
 length = 100
