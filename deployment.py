@@ -15,6 +15,7 @@ file = st.file_uploader("Choose crop photo from computer",type = ["jpg","png"])
 import cv2
 import numpy as np
 from numpy import argmax
+from PIL import Image
 from keras.preprocessing.image import load_img, img_to_array
 from keras.models import load_model
 
