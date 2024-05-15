@@ -9,7 +9,7 @@ from keras.models import load_model
 from tensorflow.keras.models import model_from_json
 
 @st.cache_resource
-def Prediction(filepath):   
+def Prediction(_filepath):   
     img = load_img(filepath, color_mode="grayscale", target_size=(width, length))
   
     img = img_to_array(img)
