@@ -41,7 +41,7 @@ def main():
     img_array = prepare_image(image)
     
     result = prediction(model, img_array)
-    st.success("The predicted crop is: {result}")
+    st.success(f"The predicted crop is: {result}")
 
 if __name__ == "__main__":
   main()
