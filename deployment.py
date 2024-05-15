@@ -8,8 +8,9 @@ from keras.preprocessing.image import load_img, img_to_array
 from keras.models import load_model
 from tensorflow.keras.models import model_from_json
 
-@st.cache(allow_output_mutation=True)
-model = load_model('Model79.4.h5')
+@st.cache_resource
+
+model = load_model("Model79.4.h5")
 
 st.write("""# Agricultural Crops Classifier""")
 file = st.file_uploader("Choose crop photo from computer",type = ["jpg","png"])
