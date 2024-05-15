@@ -43,18 +43,18 @@ def main():
     image = Image.open(file)
     st.image(image, caption="Uploaded Image", use_column_width=True)
     img_array = prepare_image(image)
-        
-    results, confidence_scores = prediction(model, img_array)
-    st.success(f"The predicted crop is: {results}")
-
-    st.write("Confidence scores for each class:")
-    for i, crop_name in enumerate(class_names):
-      st.write(f"{crop_name}: {confidence_scores[i]:.2f}%")
 
     if results == "Unknown" or max(confidence_scores) == max_confidence_threshold:
       st.error("Invalid input: Image does not contain a recognizable agricultural crop.")
     elif all(score < confidence_threshold for score in confidence_scores):
       st.error("Invalid input: Image does not contain a confidently recognizable agricultural crop.")
+    else
+      results, confidence_scores = prediction(model, img_array)
+      st.success(f"The predicted crop is: {results}")
+
+    st.write("Confidence scores for each class:")
+    for i, crop_name in enumerate(class_names):
+      st.write(f"{crop_name}: {confidence_scores[i]:.2f}%")
 
 if __name__ == "__main__":
   main()
