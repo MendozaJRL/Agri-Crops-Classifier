@@ -5,10 +5,10 @@ import tensorflow as tf
 
 @st.cache_resource
 # Load the Model
-def get_model():
-  model = load_model('Model79.4.h5')
+def load_model():
+  model = tf.keras.models.load_model('Model83.h5')
   return model
-myModel = get_model()
+myModel = load_model()
 
 st.write("""# Agricultural Crops Classifier""")
 file = st.file_uploader("Choose crop photo from computer",type = ["jpg","png"])
