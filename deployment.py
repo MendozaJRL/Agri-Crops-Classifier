@@ -20,9 +20,11 @@ def import_and_predict(image_data,model):
     size=(200,200)
     image=ImageOps.fit(image_data, size)
     img=np.asarray(image)
+    img = img.astype('float32')
+    img = img / 255.0
   
     #img_reshape=img[np.newaxis,...]
-    prediction=model.predict(img)
+    prediction = model.predict(img)
     return prediction
 
 if file is None:
