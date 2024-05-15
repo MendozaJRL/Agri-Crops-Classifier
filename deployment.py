@@ -11,7 +11,7 @@ def load_model():
   model = tf.keras.models.load_model('Model84.h5')
   return model
 
-def preprocess_image(image_data):
+def prepare_image(image_data):
   img = image_data.resize((100,100))
   img_array = np.array(img)
   if img_array.shape[-1] == 4:
@@ -20,11 +20,8 @@ def preprocess_image(image_data):
   img_array = np.expand_dims(img_array, axis=0)
   return img_array
 
-def make_prediction(model, img_array):
+def prediction(model, img_array):
   predictions = model.predict(img_array)
-  return predictions
-
-def display_prediction(predictions):
   class_names = ['Jute (Saluyot)', 'Maize (Mais)', 'Rice (Bigas)', 'Sugarcane (Tubo)', 'Wheat (Trigo)']
   predicted_class_digit = np.argmax(predictions[0])
   predicted_class = class_names[predicted_class_digit]
@@ -35,20 +32,15 @@ def main():
 
   st.title("Agricultural Crops Classifier")
   st.write("Please Upload a Crop Image")
-  
   file = st.file_uploader("Select Image ", type=["jpg", "jpeg", "png"])
 
   if file is not None:
     image = Image.open(file)
     st.image(image, caption="Uploaded Image", use_column_width=True)
-
-    img_array = preprocess_image(image)
-
-    st.write(f"Shape of preprocessed image: {img_array.shape}")
-
-    predictions = make_prediction(model, img_array)
-    prediction_class = display_prediction(predictions)
-    st.success("The predicted crop is: {predicted_class}")
+    img_array = prepare_image(image)
+    
+    result = prediction(model, img_array)
+    st.success("The predicted crop is: {result}")
 
 if __name__ == "__main__":
   main()
