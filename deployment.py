@@ -30,7 +30,7 @@ import cv2
 from PIL import Image,ImageOps
 import numpy as np
 
-model = load_model("Model79.4.h5")
+model = load_model("filename1.h5")
 class_names = ['Jute (Saluyot)', 'Maize (Mais)', 'Rice (Bigas)', 'Sugarcane (Tubo)', 'Wheat (Trigo)']
 width = 100
 length = 100
