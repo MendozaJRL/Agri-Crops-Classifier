@@ -17,7 +17,7 @@ from PIL import Image,ImageOps
 import numpy as np
 
 def import_and_predict(image_data,model):
-    size=(64,64)
+    size=(100,100)
     image=ImageOps.fit(image_data, size)
     img=np.asarray(image)
   
