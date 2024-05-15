@@ -21,9 +21,10 @@ st.write("""# Agricultural Crops Classifier""")
 file = st.file_uploader("Choose crop photo from computer",type = ["jpg","png"])
 
 def import_and_predict(image_data, model):
-    size=(200,200)
-    image=ImageOps.fit(image_data, size)
-    img=np.asarray(image)
+    size=(100,100)
+    #image=ImageOps.fit(image_data, size)
+    image = load_img(image_data, grayscale=True, target_size=size)
+    img = img_to_array(image)
     img_reshape=img[np.newaxis,...]
   
     img = img.astype('float32')
