@@ -8,7 +8,7 @@ import numpy as np
 
 @st.cache_resource
 def load_model():
-  model = tf.keras.models.load_model('Model84.h5')
+  model = tf.keras.models.load_model('Model79.4.h5')
   return model
 
 def prepare_image(image_data):
