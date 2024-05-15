@@ -7,6 +7,8 @@ from PIL import Image
 import numpy as np
 
 @st.cache_resource
+class_names = ['Jute (Saluyot)', 'Maize (Mais)', 'Rice (Bigas)', 'Sugarcane (Tubo)', 'Wheat (Trigo)']
+
 def load_model():
   model = tf.keras.models.load_model('Model79.4.h5')
   return model
@@ -30,7 +32,6 @@ def prediction(model, img_array):
 
 def main():
   model = load_model()
-  class_names = ['Jute (Saluyot)', 'Maize (Mais)', 'Rice (Bigas)', 'Sugarcane (Tubo)', 'Wheat (Trigo)']
   
   st.title("Agricultural Crops Classifier")
   st.write("Please Upload a Crop Image")
