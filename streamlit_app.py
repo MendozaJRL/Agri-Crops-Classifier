@@ -52,9 +52,9 @@ def main():
       st.error("Invalid input: Image does not contain a confidently recognizable agricultural crop.")
     else:
       st.success(f"The predicted crop is: {results}")
-    st.write("Confidence scores for each class:")
-    for i, crop_name in enumerate(class_names):
-      st.write(f"{crop_name}: {confidence_scores[i]:.2f}%")
+      st.write("Confidence scores for each class:")
+      for i, crop_name in enumerate(class_names):
+        st.write(f"{crop_name}: {confidence_scores[i]:.2f}%")
 
 if __name__ == "__main__":
   main()
