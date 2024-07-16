@@ -36,11 +36,10 @@ def main():
   confidence_difference_threshold = 20
   
   st.title("Agricultural Crops Classifier")
-  st.write("Please Upload a Crop Image")
-  file = st.file_uploader("Select Image ", type=["jpg", "jpeg", "png"])
+  picture = st.camera_input("Please Upload a Crop Image")
 
-  if file is not None:
-    image = Image.open(file)
+  if picture is not None:
+    image = Image.open(picture)
     st.image(image, caption="Uploaded Image", use_column_width=True)
     img_array = prepare_image(image)
 
